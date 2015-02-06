@@ -6,3 +6,5 @@ DEFAULT_URL = 'http://nltk.googlecode.com/svn/trunk/nltk_data/index.xml'
 to
 
 DEFAULT_URL = "http://nltk.github.com/nltk_data/"
+
+2)
