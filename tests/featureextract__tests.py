@@ -1,5 +1,5 @@
 from nose.tools import *
-import NAME
+import raop.featureextract
 
 def setup():
     print "SETUP!"
