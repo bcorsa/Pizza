@@ -5,7 +5,7 @@ except ImportError:
 
 config = {
     'description': 'Kaggle competition. Random acts of pizza.',
-    'author': 'Steven, Can, Bianca, Kevin & Tom',
+    'author': 'Steven Z, Can U, Bianca, Kevin & Tom',
     'url': 'https://github.com/903group6/Pizza',
     'download_url': 'https://github.com/903group6/Pizza',
     'author_email': 'szimme@essex.ac.uk',
