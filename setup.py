@@ -10,7 +10,7 @@ config = {
     'download_url': 'https://github.com/903group6/Pizza',
     'author_email': 'szimme@essex.ac.uk',
     'version': '0.1',
-    'install_requires': ['nose'],
+    'install_requires': ['nose','nltk'],
     'packages': ['raop'],
     'scripts': [],
     'name': 'group6raop'
