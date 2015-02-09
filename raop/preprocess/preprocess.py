@@ -15,7 +15,7 @@ class Preprocess(object):
 		self.lowerCaseText = None
 		self.stopWordRmText = None
 		self.stemmedText = None
-                self.normalisedText = None
+		self.normalisedText = None
 
 		self.concatText = None		
 
@@ -59,7 +59,8 @@ class Preprocess(object):
 	def concatenate(self, firstKey, secondKey):
 		'''Concatenate two string key value pairs from dictionary
 		First Key Values + Second Key Values'''
-		self.concatText = str (str(self.kaggleDict.get(firstKey)) + ' ' + str(self.kaggleDict.get(secondKey)))
+		#self.concatText = str (str(self.kaggleDict.get(firstKey)) + ' ' + str(self.kaggleDict.get(secondKey)))
+		self.concatText = str (self.kaggleDict.get(firstKey).encode('utf-8') + ' ' + self.kaggleDict.get(secondKey).encode('utf-8'))
 
 	def dropKey(self, keyName):
 		'''Remove specified Key Value from dictionary'''
