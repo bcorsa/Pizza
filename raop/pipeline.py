@@ -1,7 +1,8 @@
 import raop.helper as helper
+import raop.preprocess.preprocess as preproc
 
 
-#Step 1	
+#Step 1	- Remove desired keys from each dictionary
 def removeNonNeededKeys(inputJSONfile,outputJSONfile):
 	'''Removes keys from training file that are not needed.  
 	The keys listed below are not in the test data and therefore not necessary in training data either.
@@ -22,8 +23,7 @@ def removeNonNeededKeys(inputJSONfile,outputJSONfile):
 					"requester_number_of_posts_on_raop_at_retrieval", 
 					"requester_user_flair",
 					"requester_upvotes_minus_downvotes_at_retrieval", 
-					"requester_upvotes_plus_downvotes_at_retrieval",
-]
+					"requester_upvotes_plus_downvotes_at_retrieval",]
 
 	list = helper.loadJSONfromFile(inputJSONfile)
 	for dict in list:				
@@ -32,12 +32,9 @@ def removeNonNeededKeys(inputJSONfile,outputJSONfile):
 
 	helper.dumpJSONtoFile(outputJSONfile, list)
 
+###########################
 
-
-import raop.helper as helper
-import raop.preprocess.preprocess as preproc
-
-#Step 2
+#Step 2 - Add POS tags, tokens, etc to each dictionary
 def addPreprocessedKeyVals(inputJSONfile,outputJSONfile):
 	'''Loads json file to list --> creates object for each dictionary in list
 	Then preprocesses the text data in dictionary (e.g. POS tags)
@@ -49,7 +46,6 @@ def addPreprocessedKeyVals(inputJSONfile,outputJSONfile):
 		preProcObj = preproc.Preprocess()
 		preProcObj.setDictionary(dict)
 		preProcObj.concatenate("request_title", "request_text_edit_aware")
-		#print preProcObj.concatText
 		preProcObj.sentSeg(preProcObj.concatText)
 		preProcObj.tokenize(preProcObj.concatText)
 		preProcObj.posTag(preProcObj.tokenizedText)
@@ -61,12 +57,7 @@ def addPreprocessedKeyVals(inputJSONfile,outputJSONfile):
 		dict["added_normalised_text"] = preProcObj.normalisedText
 		print count
 		count += 1
-	return list
+	helper.dumpJSONtoFile(outputJSONfile, list)
 
-
-list = addPreprocessedKeyVals("resources/1-train-fields-removed.json","resources/2-train-preprocessed-keys-added.json")	
-helper.dumpJSONtoFile(outputJSONfile, list)
-
-addPreprocessedKeyVals("tests/test-data/utf-encoding-test.json","temp.json")
 
 

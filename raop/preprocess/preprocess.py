@@ -58,9 +58,10 @@ class Preprocess(object):
 	
 	def concatenate(self, firstKey, secondKey):
 		'''Concatenate two string key value pairs from dictionary
-		First Key Values + Second Key Values'''
+		First Key Values + Second Key Values.
+		The encoding string encoding is necessary for string concatenation.
+		The decoding is necessary for the string to be dumped back to JSON'''
 		#self.concatText = str (str(self.kaggleDict.get(firstKey)) + ' ' + str(self.kaggleDict.get(secondKey)))
-		#self.concatText = str (self.kaggleDict.get(firstKey).encode('utf-8') + ' ' + self.kaggleDict.get(secondKey).encode('utf-8'))
 		self.concatText = (str (self.kaggleDict.get(firstKey).encode('utf-8') + ' ' + self.kaggleDict.get(secondKey).encode('utf-8'))).decode('utf-8')
 
 	def dropKey(self, keyName):
