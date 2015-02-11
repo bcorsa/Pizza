@@ -13,9 +13,9 @@ class FeatureExtract(object):
 	regex = re.compile(r"([Hh]ttp(\S)+((imgur)|(youtube))(\w|\W)+)|([Hh]ttp(\S)+((jpe?g)|(png)))")
 	match = re.search(regex,request_text_edit_aware)	
 	if match: 	
-            self.evidence = True
+            self.evidence = 1
 	else :
-	    self.evidence = False
+	    self.evidence = 0
 
     def evalStatus(self,requester_upvotes_minus_downvotes_at_request, \
 	requester_account_age_in_days_at_request, requester_number_of_comments_in_raop_at_request,\

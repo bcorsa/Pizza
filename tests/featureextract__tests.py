@@ -17,9 +17,9 @@ def testEvidence():
   
     featObj = featureextract.FeatureExtract()
     featObj.findEvidence(testTextEvi_true)
-    assert_equal(featObj.evidence,True)
+    assert_equal(featObj.evidence,1)
     featObj.findEvidence(testTextEvi_false)
-    assert_equal(featObj.evidence,False)
+    assert_equal(featObj.evidence,0)
      
 def testStatus():
     '''Test for status evaluation function'''
