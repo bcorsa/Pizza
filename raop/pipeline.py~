@@ -64,11 +64,10 @@ def addPreprocessedKeyVals(inputJSONfile,outputJSONfile):
 
 #Step 2 - Extract Features / Create Feature Vectors
 def getFeatures(inputJSONfile):
-    '''Loads Json(output from step 2) file to list --> creates object for 
-       each dictionary in list. Then extract features from each dictionary,
-       and keep it in a feature vector. Once feature extraction is completed,
-       normalise the feature vectors.
-       '''
+    '''Load JSON file to list, then pass value from dictionary
+       to feature extractors then create
+ 	
+    '''
     list = helper.loadJSONfromFile(inputJSONfile)
     featObj = featureextract.FeatureExtract()
     X_set = []
