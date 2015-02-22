@@ -8,7 +8,15 @@ class FeatureExtract(object):
 	self.statusPrevAct = None
 
     def findEvidence(self,request_text_edit_aware):
-	'''Find reddit post with image/proof'''
+	'''Find reddit post with image/proof
+	   On roap, users often post thier photo/video 
+           as an evidence of thier condition/existence
+	   this module uses regex library (re) to parse
+	   url from imgur and youtube
+           As well as url with jpg and png file 		
+	   1 - evidence is found
+           0 - evidence is not found
+        '''
 
 	regex = re.compile(r"([Hh]ttp(\S)+((imgur)|(youtube))(\w|\W)+)|([Hh]ttp(\S)+((jpe?g)|(png)))")
 	match = re.search(regex,request_text_edit_aware)	
