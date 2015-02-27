@@ -62,7 +62,7 @@ def addPreprocessedKeyVals(inputJSONfile,outputJSONfile):
 
 ###########################
 
-#Step 2 - Extract Features / Create Feature Vectors
+#Step 3 - Extract Features / Create Feature Vectors
 def getFeatures(inputJSONfile):
     '''Loads Json(output from step 2) file to list --> creates object for 
        each dictionary in list. Then extract features from each dictionary,
@@ -80,12 +80,22 @@ def getFeatures(inputJSONfile):
         dict["requester_account_age_in_days_at_request"],\
         dict["requester_number_of_comments_in_raop_at_request"],\
         dict["requester_number_of_posts_on_raop_at_request"])
-	temp_feat.append(featObj.evidence)
-	temp_feat.append(featObj.statusKarma)
-	temp_feat.append(featObj.statusAccAge)
-	temp_feat.append(featObj.statusPrevAct)
-	X_set.append(temp_feat)
-	Y_set.append(dict["requester_received_pizza"])
+        temp_feat.append(featObj.evidence)
+        temp_feat.append(featObj.statusKarma)
+        temp_feat.append(featObj.statusAccAge)
+        temp_feat.append(featObj.statusPrevAct)
+        featObj.identifyNarratives(dict["added_Title_+_Request"])
+        temp_feat.append(featObj.narrativeCountMoney1)
+        temp_feat.append(featObj.narrativeCountMoney2)
+        temp_feat.append(featObj.narrativeCountJob)
+        temp_feat.append(featObj.narrativeCountFamily)
+				#TODO: Add Kevin's reciprocity/word count and Bianca's Time Stuff
+        #temp_feat.append(featObj.findReciprocity)
+        #print temp_feat
+        #temp_feat.append(featObj.wordNum)
+        #print temp_feat
+        X_set.append(temp_feat)
+        Y_set.append(dict["requester_received_pizza"])
     #TO DO:Normalisation/Vectorization
     
     return X_set, Y_set
