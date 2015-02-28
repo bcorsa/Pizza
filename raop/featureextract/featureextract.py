@@ -1,4 +1,6 @@
 import re
+import datetime
+
 
 class FeatureExtract(object):
     def  __init__(self):
@@ -12,6 +14,9 @@ class FeatureExtract(object):
         self.narrativeCountFamily = 0
         self.findReciprocity = None
         self.wordNum = None
+	self.minTime=0
+	self.time=0
+	self.firstHalf=None
 
     def findEvidence(self,request_text_edit_aware):
 	'''Find reddit post with image/proof
@@ -67,5 +72,33 @@ class FeatureExtract(object):
         #match = re.findall(reciprocity_regex,request_text_edit_aware)
         #self.findReciprocity = len(match)
 
+
     def countWord(self,tokens):
         self.wordNum = len(tokens)
+    
+    def getMinTime(self,timeList):
+	listofTime=[]
+	for dict in timeList:
+		listofTime.append(dict["unix_timestamp_of_request"])
+	self.minTime=min(listofTime)
+
+    def getTime(self,time):
+	startTime=self.minTime
+	self.time=time-startTime
+
+    def getFirstHalf(self,time):
+       # 1 - yes
+       # 2 - no
+	date=datetime.datetime.fromtimestamp(time)
+	if(date.day < 15):
+		self.firstHalf=1
+	else:
+		self.firstHalf=0
+		
+
+
+	
+	
+
+    
+
